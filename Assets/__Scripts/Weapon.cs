@@ -133,6 +133,7 @@ public class Weapon : MonoBehaviour {
 
             case WeaponType.spread:
 
+                def.delayBetweenShots = .5f;
 
                 p = MakeProjectile(); // Make middle Projectile
                 p.rigid.velocity = vel;
