@@ -96,6 +96,8 @@ public class Weapon : MonoBehaviour {
         }
         def = Main.GetWeaponDefinition(_type);
         collarRend.material.color = def.color;
+
+
         lastShotTime = 0; // You can fire immediately after _type is set.
     }
 
@@ -104,6 +106,13 @@ public class Weapon : MonoBehaviour {
         Debug.Log("Weapon Fired:" + gameObject.name);
         // If this.gameObject is inactive, return
         if (!gameObject.activeInHierarchy) return;
+        
+        
+        // if (type == WeaponType.spread)
+        // {
+        //     def.delayBetweenShots = 0.1;
+        // }
+
         // If it hasn't been enough time between shots, return
         if (Time.time - lastShotTime < def.delayBetweenShots)
         {
@@ -123,14 +132,27 @@ public class Weapon : MonoBehaviour {
                 break;
 
             case WeaponType.spread:
+
+
                 p = MakeProjectile(); // Make middle Projectile
                 p.rigid.velocity = vel;
+
                 p = MakeProjectile(); // Make right Projectile
                 p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle right Projectile
+                p.transform.rotation = Quaternion.AngleAxis(5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
                 p = MakeProjectile(); // Make left Projectile
                 p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle left Projectile
+                p.transform.rotation = Quaternion.AngleAxis(-5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
                 break;
         }
     }
