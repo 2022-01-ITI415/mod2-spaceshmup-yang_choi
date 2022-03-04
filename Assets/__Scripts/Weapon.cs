@@ -106,12 +106,7 @@ public class Weapon : MonoBehaviour {
         Debug.Log("Weapon Fired:" + gameObject.name);
         // If this.gameObject is inactive, return
         if (!gameObject.activeInHierarchy) return;
-        
-        
-        // if (type == WeaponType.spread)
-        // {
-        //     def.delayBetweenShots = 0.1;
-        // }
+
 
         // If it hasn't been enough time between shots, return
         if (Time.time - lastShotTime < def.delayBetweenShots)
@@ -129,6 +124,7 @@ public class Weapon : MonoBehaviour {
             case WeaponType.blaster:
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
+
                 break;
 
             case WeaponType.spread:
