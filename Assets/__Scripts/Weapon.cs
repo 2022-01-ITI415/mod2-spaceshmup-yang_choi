@@ -123,6 +123,9 @@ public class Weapon : MonoBehaviour {
         switch (type)
         {
             case WeaponType.blaster:
+
+                def.damageOnHit = 1f;
+
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
 
