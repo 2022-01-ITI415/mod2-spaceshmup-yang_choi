@@ -156,8 +156,8 @@ public class Weapon : MonoBehaviour {
 
             case WeaponType.shotgun:
 
-                def.delayBetweenShots = .7f;    // fire rate
-                def.damageOnHit = .5f;          // damage per Projectile
+                def.delayBetweenShots = .5f;    // fire rate
+                def.damageOnHit = 15f;          // damage per Projectile
 
                 int baseProjectileNum = 10;         // base number of Projectile
 
