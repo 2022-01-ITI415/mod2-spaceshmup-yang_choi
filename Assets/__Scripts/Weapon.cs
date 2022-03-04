@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -123,13 +123,10 @@ public class Weapon : MonoBehaviour {
         switch (type)
         {
             case WeaponType.blaster:
-
                 def.damageOnHit = 2f;
                 def.delayBetweenShots = 0.3f;
-
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
-
                 break;
 
             case WeaponType.spread:
@@ -154,6 +151,30 @@ public class Weapon : MonoBehaviour {
                 p = MakeProjectile(); // Make middle left Projectile
                 p.transform.rotation = Quaternion.AngleAxis(-5, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+
+                break;
+
+            case WeaponType.shotgun:
+
+                def.delayBetweenShots = .7f;    // fire rate
+                def.damageOnHit = .5f;          // damage per Projectile
+
+                int baseProjectileNum = 10;         // base number of Projectile
+
+                float randomNumber = Random.Range(0.0f, 5.0f);
+                int number = (int) randomNumber; // makes a random number from 0 to 5
+
+                int totalProjectiles = baseProjectileNum + number;
+
+                for (int i = 0; i < totalProjectiles + 1; i++) 
+                {
+                    // makes a random number from 0 to 5
+                    float numberAng = Random.Range(-15f, 15f);
+                    p = MakeProjectile();
+                    p.transform.rotation = Quaternion.AngleAxis(numberAng, Vector3.back);
+                    p.rigid.velocity = p.transform.rotation * vel;
+                }
+
 
                 break;
         }
