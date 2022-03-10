@@ -16,7 +16,8 @@ public enum WeaponType
     missile, // [NI] Homing missiles
     laser, // [NI] Damage over time
     shield, // Raise shieldLevel
-    shotgun // Random spread/pellet 
+    shotgun, // Random spread/pellet
+    minigun // shoots tons of bullets with tiny spread and low damage 
 }
 
 /// <summary>
@@ -176,6 +177,14 @@ public class Weapon : MonoBehaviour {
                 }
 
 
+                break;
+            case WeaponType.minigun:
+                def.delayBetweenShots = .05f;
+                def.damageOnHit = 5f;
+                float Ang = Random.Range(-3f, 3f);
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
                 break;
         }
     }
