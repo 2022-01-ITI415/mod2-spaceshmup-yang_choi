@@ -158,7 +158,7 @@ public class Weapon : MonoBehaviour {
             case WeaponType.shotgun:
 
                 def.delayBetweenShots = .5f;    // fire rate
-                def.damageOnHit = 15f;          // damage per Projectile
+                def.damageOnHit = 20f;          // damage per Projectile
 
                 int baseProjectileNum = 10;         // base number of Projectile
 
@@ -178,9 +178,10 @@ public class Weapon : MonoBehaviour {
 
 
                 break;
+
             case WeaponType.minigun:
                 def.delayBetweenShots = .05f;
-                def.damageOnHit = 5f;
+                def.damageOnHit = 6f;
                 float Ang = Random.Range(-3f, 3f);
                 p = MakeProjectile();
                 p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
