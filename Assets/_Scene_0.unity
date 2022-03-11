@@ -374,7 +374,7 @@ MonoBehaviour:
     projectileColor: {r: 1, g: 1, b: 1, a: 1}
     damageOnHit: 2
     continuousDamage: 0
-    delayBetweenShots: 0.2
+    delayBetweenShots: 0.3
     velocity: 50
   - type: 2
     letter: S
@@ -384,7 +384,7 @@ MonoBehaviour:
     projectileColor: {r: 0, g: 0.654902, b: 1, a: 1}
     damageOnHit: 1
     continuousDamage: 0
-    delayBetweenShots: 0.4
+    delayBetweenShots: 0.5
     velocity: 50
   - type: 8
     letter: MG
@@ -392,10 +392,10 @@ MonoBehaviour:
     projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
       type: 3}
     projectileColor: {r: 1, g: 0.4, b: 0, a: 1}
-    damageOnHit: 1
+    damageOnHit: 0.1
     continuousDamage: 0
-    delayBetweenShots: 0.1
-    velocity: 50
+    delayBetweenShots: 0.005
+    velocity: 55
   - type: 7
     letter: SG
     color: {r: 1, g: 0, b: 0.89520264, a: 1}
@@ -916,6 +916,11 @@ PrefabInstance:
     - target: {fileID: 4052337362685714, guid: d38b8bdef6bb4724e9a7341bda0aad27, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114684557380802588, guid: d38b8bdef6bb4724e9a7341bda0aad27,
+        type: 3}
+      propertyPath: _type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d38b8bdef6bb4724e9a7341bda0aad27, type: 3}

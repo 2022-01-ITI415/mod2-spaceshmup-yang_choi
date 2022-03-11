@@ -167,8 +167,8 @@ public class Weapon : MonoBehaviour {
 
                 for (int i = 0; i < totalProjectiles + 1; i++) 
                 {
-                    // makes a random number from 0 to 5
-                    float numberAng = Random.Range(-15f, 15f);
+                    // makes a random number from -16 to 16
+                    float numberAng = Random.Range(-16f, 16f);
                     p = MakeProjectile();
                     //def.damageOnHit = 200;          // damage per Projectile
                     p.transform.rotation = Quaternion.AngleAxis(numberAng, Vector3.back);
@@ -178,8 +178,8 @@ public class Weapon : MonoBehaviour {
                 break;
 
             case WeaponType.minigun:
-   
-                float Ang = Random.Range(-3f, 3f);
+                
+                float Ang = Random.Range(-3.5f, 3.5f);
                 p = MakeProjectile();
                 p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
