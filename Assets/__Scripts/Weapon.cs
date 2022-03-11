@@ -179,7 +179,7 @@ public class Weapon : MonoBehaviour {
 
             case WeaponType.minigun:
                 
-                float Ang = Random.Range(-3.5f, 3.5f);
+                float Ang = Random.Range(-4f, 4f);
                 p = MakeProjectile();
                 p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
