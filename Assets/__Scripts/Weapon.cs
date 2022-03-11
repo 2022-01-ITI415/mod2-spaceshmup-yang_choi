@@ -17,7 +17,8 @@ public enum WeaponType
     laser, // [NI] Damage over time NOT MADE
     shield, // Raise shieldLevel
     shotgun, // Random spread/pellet
-    minigun // shoots tons of bullets with tiny spread and low damage 
+    minigun, // shoots tons of bullets with tiny spread and low damage 
+    flame
 }
 
 /// <summary>
@@ -198,6 +199,29 @@ public class Weapon : MonoBehaviour {
                 p.rigid.velocity = vel;
                 
                 break;
+
+            case WeaponType.flame:
+                
+                p = MakeProjectile(); // Make middle Projectile
+                p.rigid.velocity = vel;
+
+                p = MakeProjectile(); // Make right Projectile
+                p.transform.rotation = Quaternion.AngleAxis(5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle right Projectile
+                p.transform.rotation = Quaternion.AngleAxis(2, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make left Projectile
+                p.transform.rotation = Quaternion.AngleAxis(-5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle left Projectile
+                p.transform.rotation = Quaternion.AngleAxis(-2, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                break;    
         }
     }
 
