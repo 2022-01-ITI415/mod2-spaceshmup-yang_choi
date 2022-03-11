@@ -372,10 +372,10 @@ MonoBehaviour:
     projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
       type: 3}
     projectileColor: {r: 1, g: 1, b: 1, a: 1}
-    damageOnHit: 2
+    damageOnHit: 0.8
     continuousDamage: 0
-    delayBetweenShots: 0.3
-    velocity: 50
+    delayBetweenShots: 0.25
+    velocity: 60
   - type: 2
     letter: S
     color: {r: 0, g: 0.65676546, b: 1, a: 1}
@@ -384,7 +384,7 @@ MonoBehaviour:
     projectileColor: {r: 0, g: 0.654902, b: 1, a: 1}
     damageOnHit: 1
     continuousDamage: 0
-    delayBetweenShots: 0.5
+    delayBetweenShots: 0.7
     velocity: 50
   - type: 8
     letter: MG
@@ -392,17 +392,17 @@ MonoBehaviour:
     projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
       type: 3}
     projectileColor: {r: 1, g: 0.4, b: 0, a: 1}
-    damageOnHit: 0.1
+    damageOnHit: 0.2
     continuousDamage: 0
     delayBetweenShots: 0.01
-    velocity: 55
+    velocity: 70
   - type: 7
     letter: SG
     color: {r: 1, g: 0, b: 0.89520264, a: 1}
     projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
       type: 3}
     projectileColor: {r: 1, g: 0, b: 0.89411765, a: 1}
-    damageOnHit: 1
+    damageOnHit: 0.65
     continuousDamage: 0
     delayBetweenShots: 0.6
     velocity: 40
@@ -421,13 +421,83 @@ MonoBehaviour:
     projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
       type: 3}
     projectileColor: {r: 1, g: 0.8901961, b: 0.02745098, a: 1}
-    damageOnHit: 1
+    damageOnHit: 0.5
     continuousDamage: 0
     delayBetweenShots: -0.1
+    velocity: 35
+  - type: 10
+    letter: S
+    color: {r: 0, g: 0.654902, b: 1, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 0, g: 0.654902, b: 1, a: 1}
+    damageOnHit: 2
+    continuousDamage: 0
+    delayBetweenShots: 0.25
+    velocity: 50
+  - type: 10
+    letter: B
+    color: {r: 1, g: 1, b: 1, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 2
+    continuousDamage: 0
+    delayBetweenShots: 0.25
+    velocity: 50
+  - type: 10
+    letter: MG
+    color: {r: 1, g: 0.4, b: 0, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 1, g: 0.4, b: 0, a: 1}
+    damageOnHit: 2
+    continuousDamage: 0
+    delayBetweenShots: 0.25
+    velocity: 50
+  - type: 10
+    letter: SG
+    color: {r: 1, g: 0, b: 0.89411765, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 1, g: 0, b: 0.89411765, a: 1}
+    damageOnHit: 2
+    continuousDamage: 0
+    delayBetweenShots: 0.25
+    velocity: 50
+  - type: 10
+    letter: M
+    color: {r: 0.93333334, g: 0.52156866, b: 0.52156866, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 0.47843137, g: 0.47843137, b: 0.47843137, a: 1}
+    damageOnHit: 2
+    continuousDamage: 0
+    delayBetweenShots: 0.25
+    velocity: 50
+  - type: 11
+    letter: M
+    color: {r: 0.9339623, g: 0.5233713, b: 0.5233713, a: 1}
+    projectilePrefab: {fileID: 1864666716847092, guid: abfa1b3936071894280fd991285e63bb,
+      type: 3}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 7
+    continuousDamage: 0
+    delayBetweenShots: 1.5
+    velocity: 0
+  - type: 10
+    letter: F
+    color: {r: 1, g: 0.8901961, b: 0, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 2
+    continuousDamage: 0
+    delayBetweenShots: 0.25
     velocity: 50
   prefabPowerUp: {fileID: 1062273549804748, guid: 9649a9a79085a854d9990613a980f435,
     type: 3}
-  powerUpFrequency: 010000000100000002000000080000000700000006000000
+  powerUpFrequency: 0100000001000000020000000800000007000000090000000a0000000b00000006000000
 --- !u!20 &282840813
 Camera:
   m_ObjectHideFlags: 0

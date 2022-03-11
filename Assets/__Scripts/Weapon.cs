@@ -18,7 +18,9 @@ public enum WeaponType
     shield, // Raise shieldLevel
     shotgun, // Random spread/pellet
     minigun, // shoots tons of bullets with tiny spread and low damage 
-    flame
+    flame,
+    troll, // A weapon meant to troll the player. You'll know when you get it.
+    mine // Its a mine -> no projectile movement + low ROF + tons of damage.
 }
 
 /// <summary>
@@ -168,7 +170,7 @@ public class Weapon : MonoBehaviour {
 
                 for (int i = 0; i < totalProjectiles + 1; i++) 
                 {
-                    // makes a random number from -16 to 16
+                    // makes a random number from -16 to 16 the spread
                     float numberAng = Random.Range(-16f, 16f);
                     p = MakeProjectile();
                     //def.damageOnHit = 200;          // damage per Projectile
@@ -180,6 +182,7 @@ public class Weapon : MonoBehaviour {
 
             case WeaponType.minigun:
                 
+                // small spread will make ROF fast with low damage
                 float Ang = Random.Range(-4f, 4f);
                 p = MakeProjectile();
                 p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
@@ -221,6 +224,15 @@ public class Weapon : MonoBehaviour {
                 p.transform.rotation = Quaternion.AngleAxis(-2, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
 
+                break;
+            case WeaponType.troll:
+
+                p = MakeProjectile();
+                p.rigid.velocity = -vel;
+                break;
+            case WeaponType.mine:
+
+                p = MakeProjectile();
                 break;    
         }
     }
