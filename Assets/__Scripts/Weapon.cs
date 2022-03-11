@@ -12,9 +12,9 @@ public enum WeaponType
     none, // The default / no weapons
     blaster, // A simple blaster
     spread, // Two shots simultaneously
-    phaser, // [NI] Shots that move in waves
+    phaser, // [NI] Shots that move in waves NOT MADE
     missile, // [NI] Homing missiles
-    laser, // [NI] Damage over time
+    laser, // [NI] Damage over time NOT MADE
     shield, // Raise shieldLevel
     shotgun, // Random spread/pellet
     minigun // shoots tons of bullets with tiny spread and low damage 
@@ -48,6 +48,9 @@ public class Weapon : MonoBehaviour {
     public GameObject collar;
     public float lastShotTime; // Time last shot was fired
     private Renderer collarRend;
+    public Transform target;
+    public float rotateSpeed = 200f;
+
 
     private void Start()
     {
@@ -124,16 +127,13 @@ public class Weapon : MonoBehaviour {
         switch (type)
         {
             case WeaponType.blaster:
-                def.damageOnHit = 2f;
-                def.delayBetweenShots = 0.3f;
+
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
             case WeaponType.spread:
-
-                def.delayBetweenShots = .5f;
-
+                
                 p = MakeProjectile(); // Make middle Projectile
                 p.rigid.velocity = vel;
 
@@ -157,9 +157,6 @@ public class Weapon : MonoBehaviour {
 
             case WeaponType.shotgun:
 
-                def.delayBetweenShots = .5f;    // fire rate
-                def.damageOnHit = 15f;          // damage per Projectile
-
                 int baseProjectileNum = 10;         // base number of Projectile
 
                 float randomNumber = Random.Range(0.0f, 5.0f);
@@ -172,19 +169,33 @@ public class Weapon : MonoBehaviour {
                     // makes a random number from 0 to 5
                     float numberAng = Random.Range(-15f, 15f);
                     p = MakeProjectile();
+                    //def.damageOnHit = 200;          // damage per Projectile
                     p.transform.rotation = Quaternion.AngleAxis(numberAng, Vector3.back);
                     p.rigid.velocity = p.transform.rotation * vel;
                 }
 
-
                 break;
+
             case WeaponType.minigun:
-                def.delayBetweenShots = .05f;
-                def.damageOnHit = 5f;
+   
                 float Ang = Random.Range(-3f, 3f);
                 p = MakeProjectile();
                 p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+                break;
+
+            case WeaponType.missile:
+                // target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                // p = MakeProjectile();
+                // // Vector2 direction = (Vector2)target.position;
+                // // direction.Normalize();
+                // // float rotateAmount = Vector3.Cross(direction, transform.up).z;
+                // // angularVelocity = rotateAmount * rotateSpeed;
+                // // p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
+
+                p = MakeProjectile();
+                p.rigid.velocity = vel;
+                
                 break;
         }
     }
