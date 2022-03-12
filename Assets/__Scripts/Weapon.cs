@@ -40,6 +40,8 @@ public class WeaponDefinition
     public float continuousDamage = 0; // Damage per second (Laser)
     public float delayBetweenShots = 0;
     public float velocity = 20; // Speed of projectiles
+    //public float rotateSpeed = 200f; // rotate speed
+    public AudioClip soundEffect; // the sound for the PowerUp type
 }
 public class Weapon : MonoBehaviour {
     static public Transform PROJECTILE_ANCHOR;
@@ -140,7 +142,6 @@ public class Weapon : MonoBehaviour {
                 p = MakeProjectile(); // Make middle Projectile
                 p.rigid.velocity = vel;
 
-//
                 p = MakeProjectile(); // Make right Projectile
                 p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
@@ -192,14 +193,14 @@ public class Weapon : MonoBehaviour {
             case WeaponType.missile:
                 // target = GameObject.FindGameObjectWithTag("Enemy").transform;
                 // p = MakeProjectile();
-                // // Vector2 direction = (Vector2)target.position;
-                // // direction.Normalize();
-                // // float rotateAmount = Vector3.Cross(direction, transform.up).z;
-                // // angularVelocity = rotateAmount * rotateSpeed;
-                // // p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
+                // Vector2 direction = (Vector2)target.position;
+                // direction.Normalize();
+                // float rotateAmount = Vector3.Cross(direction, transform.up).z;
+                // p.angularVelocity = rotateAmount * rotateSpeed;
+                // p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
 
-                p = MakeProjectile();
-                p.rigid.velocity = vel;
+                
+                // p.rigid.velocity = vel;
                 
                 break;
 
