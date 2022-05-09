@@ -18,6 +18,7 @@ public class PowerUp : MonoBehaviour {
     public TextMesh letter; // Reference to the TextMesh
     public Vector3 rotPerSecond; // Euler rotation speed
     public float birthTime;
+    public AudioClip soundEffect; // the sound for the PowerUp type
 
     private Rigidbody rigid;
     private BoundsCheck bndCheck;
@@ -32,6 +33,7 @@ public class PowerUp : MonoBehaviour {
         rigid = GetComponent<Rigidbody>();
         bndCheck = GetComponent<BoundsCheck>();
         cubeRend = cube.GetComponent<Renderer>();
+        soundEffect = GetComponent<AudioClip>();
 
         // Set a random elocity
         Vector3 vel = Random.onUnitSphere; // Get Random XYZ velocity
@@ -99,6 +101,7 @@ public class PowerUp : MonoBehaviour {
         cubeRend.material.color = def.color;
         //letter.color = def.color; // We could colorize the letter too
         letter.text = def.letter; // Set the letter that is shown
+        soundEffect = def.soundEffect;
         type = wt; // Finally actually set the type
     }
 
@@ -107,6 +110,7 @@ public class PowerUp : MonoBehaviour {
         // This function is called by the Hero class when a PowerUp is collected
         // We could tween into the target and shrink in size.
         // But for now just destroy this.gameObject
+        AudioSource.PlayClipAtPoint(soundEffect, transform.position);
         Destroy(this.gameObject);
     }
 }

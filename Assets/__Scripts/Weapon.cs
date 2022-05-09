@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +12,15 @@ public enum WeaponType
     none, // The default / no weapons
     blaster, // A simple blaster
     spread, // Two shots simultaneously
-    phaser, // [NI] Shots that move in waves
+    phaser, // [NI] Shots that move in waves NOT MADE
     missile, // [NI] Homing missiles
-    laser, // [NI] Damage over time
-    shield // Raise shieldLevel
+    laser, // [NI] Damage over time NOT MADE
+    shield, // Raise shieldLevel
+    shotgun, // Random spread/pellet
+    minigun, // shoots tons of bullets with tiny spread and low damage 
+    flame,
+    troll, // A weapon meant to troll the player. You'll know when you get it.
+    mine // Its a mine -> no projectile movement + low ROF + tons of damage.
 }
 
 /// <summary>
@@ -35,6 +40,8 @@ public class WeaponDefinition
     public float continuousDamage = 0; // Damage per second (Laser)
     public float delayBetweenShots = 0;
     public float velocity = 20; // Speed of projectiles
+    //public float rotateSpeed = 200f; // rotate speed
+    public AudioClip soundEffect; // the sound for the PowerUp type
 }
 public class Weapon : MonoBehaviour {
     static public Transform PROJECTILE_ANCHOR;
@@ -46,6 +53,9 @@ public class Weapon : MonoBehaviour {
     public GameObject collar;
     public float lastShotTime; // Time last shot was fired
     private Renderer collarRend;
+    public Transform target;
+    public float rotateSpeed = 200f;
+
 
     private void Start()
     {
@@ -96,6 +106,8 @@ public class Weapon : MonoBehaviour {
         }
         def = Main.GetWeaponDefinition(_type);
         collarRend.material.color = def.color;
+
+
         lastShotTime = 0; // You can fire immediately after _type is set.
     }
 
@@ -104,6 +116,8 @@ public class Weapon : MonoBehaviour {
         Debug.Log("Weapon Fired:" + gameObject.name);
         // If this.gameObject is inactive, return
         if (!gameObject.activeInHierarchy) return;
+
+
         // If it hasn't been enough time between shots, return
         if (Time.time - lastShotTime < def.delayBetweenShots)
         {
@@ -118,20 +132,109 @@ public class Weapon : MonoBehaviour {
         switch (type)
         {
             case WeaponType.blaster:
+
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
 
             case WeaponType.spread:
+                
                 p = MakeProjectile(); // Make middle Projectile
                 p.rigid.velocity = vel;
+
                 p = MakeProjectile(); // Make right Projectile
                 p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle right Projectile
+                p.transform.rotation = Quaternion.AngleAxis(5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
                 p = MakeProjectile(); // Make left Projectile
                 p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle left Projectile
+                p.transform.rotation = Quaternion.AngleAxis(-5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
                 break;
+
+            case WeaponType.shotgun:
+
+                int baseProjectileNum = 10;         // base number of Projectile
+
+                float randomNumber = Random.Range(0.0f, 5.0f);
+                int number = (int) randomNumber; // makes a random number from 0 to 5
+
+                int totalProjectiles = baseProjectileNum + number;
+
+                for (int i = 0; i < totalProjectiles + 1; i++) 
+                {
+                    // makes a random number from -16 to 16 the spread
+                    float numberAng = Random.Range(-16f, 16f);
+                    p = MakeProjectile();
+                    //def.damageOnHit = 200;          // damage per Projectile
+                    p.transform.rotation = Quaternion.AngleAxis(numberAng, Vector3.back);
+                    p.rigid.velocity = p.transform.rotation * vel;
+                }
+
+                break;
+
+            case WeaponType.minigun:
+                
+                // small spread will make ROF fast with low damage
+                float Ang = Random.Range(-4f, 4f);
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                break;
+
+            case WeaponType.missile:
+                // target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                // p = MakeProjectile();
+                // Vector2 direction = (Vector2)target.position;
+                // direction.Normalize();
+                // float rotateAmount = Vector3.Cross(direction, transform.up).z;
+                // p.angularVelocity = rotateAmount * rotateSpeed;
+                // p.transform.rotation = Quaternion.AngleAxis(Ang, Vector3.back);
+
+                
+                // p.rigid.velocity = vel;
+                
+                break;
+
+            case WeaponType.flame:
+                
+                p = MakeProjectile(); // Make middle Projectile
+                p.rigid.velocity = vel;
+
+                p = MakeProjectile(); // Make right Projectile
+                p.transform.rotation = Quaternion.AngleAxis(5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle right Projectile
+                p.transform.rotation = Quaternion.AngleAxis(2, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make left Projectile
+                p.transform.rotation = Quaternion.AngleAxis(-5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make middle left Projectile
+                p.transform.rotation = Quaternion.AngleAxis(-2, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                break;
+            case WeaponType.troll:
+
+                p = MakeProjectile();
+                p.rigid.velocity = -vel;
+                break;
+            case WeaponType.mine:
+
+                p = MakeProjectile();
+                break;    
         }
     }
 
